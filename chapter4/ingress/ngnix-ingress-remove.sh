@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-# Create a simple NGINX deployment using kubectl and name it nginx-web
+# Delete the simple NGINX deployment: nginx-web using kubectl a
 tput setaf 5
 echo -e "\n*******************************************************************************************************************"
 echo -e "Cleaning up the NGINX resources"

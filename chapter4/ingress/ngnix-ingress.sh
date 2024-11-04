@@ -7,7 +7,7 @@ echo -e "\n*********************************************************************
 echo -e "Deploying the NGINX pod"
 echo -e "*******************************************************************************************************************"
 tput setaf 2
-kubectl create deployment nginx-web --image bitnami/nginx
+kubectl create deployment nginx-web --image bitnami/nginx --replicas 3
 
 # Create a service that exposes the Deployment on port 8080 called nginx-web
 tput setaf 5
@@ -31,7 +31,7 @@ tput setaf 2
 export hostip=$(hostname  -I | cut -f1 -d' ')
 echo -e "\nFound the Host IP: $hostip"
 
-# Use the IP ddress tht was found in the last step to create a new Ingress rule using nip.io
+# Use the IP address tht was found in the last step to create a new Ingress rule using nip.io
 # We use the IP that we found and envsubst a template called ingress.yaml that will change the value in the Ingress rule
 # to use the IP address of the host.
 tput setaf 3

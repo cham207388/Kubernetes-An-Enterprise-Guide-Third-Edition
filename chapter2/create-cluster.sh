@@ -50,7 +50,7 @@ echo -e "\n \n******************************************************************
 echo -e "Installing Helm3 and jq"
 echo -e "*******************************************************************************************************************"
 tput setaf 3
-# Get the official HELM downloder script
+# Get the official HELM downloader script
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 chmod 700 get_helm.sh
 ./get_helm.sh
@@ -59,7 +59,7 @@ sudo apt install snapd -y
 sudo snap install jq  --classic
 
 tput setaf 5
-# Create KIND Cluster calle cluster01 using config cluster01-kind.yaml
+# Create KIND Cluster called cluster01 using config cluster01-kind.yaml
 # KinD will deploy a cluster using the v1.27.1 Image - This has been tested with all of the book exercises and any K8s version
 # other than 1.30 may not work with all the book scripts due to any changes in K8s.
 # Unofficially, the scripts have been tested against KinD running 1.28.x, 1.29.x, and 1.30.x images

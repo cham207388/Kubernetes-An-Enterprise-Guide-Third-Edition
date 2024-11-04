@@ -1,7 +1,6 @@
 #!/bin/bash
 clear
 
-
 tput setaf 5
 # Create KIND Cluster called cluster01 using config cluster01-kind.yaml
 # KinD will deploy a cluster using the v1.27.1 Image - This has been tested with all of the book exercises and any K8s version
