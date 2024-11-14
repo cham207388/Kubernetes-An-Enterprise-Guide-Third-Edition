@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-
+# Assumes kind, kubectl, helm
 tput setaf 5
 # Create KIND Cluster called cluster01 using config cluster01-kind.yaml
 # KinD will deploy a cluster using the v1.27.1 Image - This has been tested with all of the book exercises and any K8s version
@@ -14,11 +14,7 @@ echo -e "***********************************************************************
 tput setaf 3
 #Use a custom image for 1.30 until KinD releases the official 1.30.0 image
 #kind create cluster --name cluster01 --config cluster01-kind.yaml --image kindest/node:v1.30.0@sha256:047357ac0cfea04663786a612ba1eaba9702bef25227a794b52890dd8bcd692e
-kind create cluster --name cluster01 --config cluster01-kind.yaml --image kindest/node:v1.30.0@sha256:047357ac0cfea04663786a612ba1eaba9702bef25227a794b52890dd8bcd692e
-#Use the K8s 1.29.2 Image
-#kind create cluster --name cluster01 --config cluster01-kind.yaml --image kindest/node:v1.29.2@sha256:51a1434a5397193442f0be2a297b488b6c919ce8a3931be0ce822606ea5ca245
-#Use the K8s 1.28.0 Image
-#kind create cluster --name cluster01 --config cluster01-kind.yaml --image kindest/node:v1.28.0@sha256:b7a4cad12c197af3ba43202d3efe03246b3f0793f162afb40a33c923952d5b31
+kind create cluster --name cluster01 --config cluster01-kind.yaml --image kindest/node:v1.30.6
 
 # Add a label to the worker node, ingress-ready=true.  The NGINX deployment will only deploy to nodes that have this label.
 tput setaf 5
@@ -51,7 +47,9 @@ echo -e "\n \n******************************************************************
 echo -e "Install NGINX Ingress Controller"
 echo -e "*******************************************************************************************************************"
 tput setaf 3
-kubectl create -f nginx-ingress/nginx-deploy.yaml
+kubectl apply -f nginx-ingress/nginx-deploy.yaml
+# or use helm
+#helm install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --version 4.11.3 --namespace ingress-nginx
 
 # Find IP address of Docker Host
 # We need to know the IP of the Host since we use nip.io for name resolution.  Nip.ip names follow the standard <url>.<host ip>.nip.io
@@ -76,4 +74,4 @@ echo -e "Example:  You have a web server you want to expose using a host called 
 echo -e "          Your ingress rule would use the hostname: ordering.$hostip.nip.io"
 echo -e "******************************************************************************************************************* \n\n"
 
-tput setaf 2f
+tput setaf 2

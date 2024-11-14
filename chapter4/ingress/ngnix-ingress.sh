@@ -1,21 +1,13 @@
 #!/bin/bash
 clear
-
+# nginx-ingress-controller is already deployed to the cluster when in chapter 1
 # Create a simple NGINX deployment using kubectl and name it nginx-web
 tput setaf 5
 echo -e "\n*******************************************************************************************************************"
-echo -e "Deploying the NGINX pod"
+echo -e "Deploying the NGINX pod and Exposing them via service"
 echo -e "*******************************************************************************************************************"
 tput setaf 2
-kubectl create deployment nginx-web --image bitnami/nginx --replicas 3
-
-# Create a service that exposes the Deployment on port 8080 called nginx-web
-tput setaf 5
-echo -e "\n*******************************************************************************************************************"
-echo -e "Creating the NGINX service"
-echo -e "*******************************************************************************************************************"
-tput setaf 2
-kubectl expose deployment nginx-web --port 8080 --target-port 8080
+kubectl apply -f ./manifests/nginx-web.yaml
 
 # Find IP address of Docker Host
 # We need to know the IP of the Host since we use nip.io for name resolution.  Nip.ip names follow the standard <url>.<host ip>.nip.io

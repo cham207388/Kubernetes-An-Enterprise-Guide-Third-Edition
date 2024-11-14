@@ -16,6 +16,8 @@ nodes:
   extraPortMappings:
   - containerPort: 2379
     hostPort: 2379
+  - containerPort: 30005
+    hostPort: 30005
   extraMounts:
   - hostPath: /sys/kernel/security
     containerPath: /sys/kernel/security
