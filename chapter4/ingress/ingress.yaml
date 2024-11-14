@@ -4,7 +4,7 @@ metadata:
   name: nginx-ingress
 spec:
   rules:
-  - host: "ubuntu.$hostip.nip.io"
+  - host: "webserver.$hostip.nip.io"
     http:
       paths:
       - path: /
