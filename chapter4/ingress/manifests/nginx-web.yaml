@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-web
+  name: nginx-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-web
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginx-web
+    spec:
+      containers:
+      - image: bitnami/nginx
+        name: nginx
+        resources: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx-web
+  name: nginx-web
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: nginx-web

@@ -49,7 +49,7 @@ echo -e "***********************************************************************
 tput setaf 3
 kubectl apply -f nginx-ingress/nginx-deploy.yaml
 # or use helm
-#helm install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --version 4.11.3 --namespace ingress-nginx
+#helm install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx
 
 # Find IP address of Docker Host
 # We need to know the IP of the Host since we use nip.io for name resolution.  Nip.ip names follow the standard <url>.<host ip>.nip.io
