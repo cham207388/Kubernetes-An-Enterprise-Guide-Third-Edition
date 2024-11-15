@@ -16,7 +16,7 @@ spec:
         app: nginx-web
     spec:
       containers:
-      - image: bitnami/nginx
+      - image: nginx
         name: nginx
         resources: {}
 
