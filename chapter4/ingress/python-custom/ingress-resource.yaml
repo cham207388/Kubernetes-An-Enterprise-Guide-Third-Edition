@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: python-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: "ingress.$hostip.nip.io"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: python-uhomepage
+            port:
+              number: 8000
+      - path: /u1
+        pathType: Prefix
+        backend:
+          service:
+            name: python-u01
+            port: 
+              number: 8000
+      - path: /u2
+        pathType: Prefix
+        backend:
+          service:
+            name: python-u02
+            port:
+              number: 8000

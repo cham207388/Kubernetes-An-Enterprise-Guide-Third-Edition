@@ -1,0 +1,128 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: python-u01
+  name: python-u01
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python-u01
+  template:
+    metadata:
+      labels:
+        app: python-u01
+    spec:
+      containers:
+      - image: baicham/python-ingress:u0.1
+        name: python-u01
+        resources:
+          requests:
+            cpu: "0.5"
+            memory: "128Mi"
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: python-u01
+  name: python-u01
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: python-u01
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: python-u02
+  name: python-u02
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python-u02
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: python-u02
+    spec:
+      containers:
+      - image: baicham/python-ingress:u0.2
+        name: python-u02
+        resources:
+          requests:
+            cpu: "0.5"
+            memory: "128Mi"
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: python-u02
+  name: python-u02
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: python-u02
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: python-uhomepage
+  name: python-uhomepage
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python-uhomepage
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: python-uhomepage
+    spec:
+      containers:
+      - image: baicham/python-ingress:uhomepage
+        name: python-uhomepage
+        resources:
+          requests:
+            cpu: "0.5"
+            memory: "128Mi"
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: python-uhomepage
+  name: python-uhomepage
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: python-uhomepage
